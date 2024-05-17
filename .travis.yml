@@ -1,0 +1,15 @@
+sudo : required
+services:
+  - docker
+
+before_install:
+  - docker build -t ramyak/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run ramyak/react-test npm test -- --coverage
+
+after_success:
+  - docker build -t ramyak/multi-client ./client
+  - docker build -t ramyak/multi-nginx ./nginx
+  - docker build -t ramyak/multi-server ./server
+  - docker build -t ramyak/multi-worker ./worker

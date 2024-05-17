@@ -3,13 +3,21 @@ services:
   - docker
 
 before_install:
-  - docker build -t ramyak/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t ramyakanguri/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run ramyak/react-test npm test -- --coverage
+  - docker run ramyakanguri/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t ramyak/multi-client ./client
-  - docker build -t ramyak/multi-nginx ./nginx
-  - docker build -t ramyak/multi-server ./server
-  - docker build -t ramyak/multi-worker ./worker
+  - docker build -t ramyakanguri/multi-client ./client
+  - docker build -t ramyakanguri/multi-nginx ./nginx
+  - docker build -t ramyakanguri/multi-server ./server
+  - docker build -t ramyakanguri/multi-worker ./worker
+  
+  #Login to docker CLI
+- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+# Take those images and push them to Docker hub
+- docker push ramyakanguri/multi-client
+- docker push ramyakanguri/multi-nginx
+- docker push ramyakanguri/multi-nserver
+- docker push ramyakanguri/multi-worker

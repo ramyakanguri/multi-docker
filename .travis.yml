@@ -20,4 +20,4 @@ after_success:
 - docker push ramyakanguri/multi-client
 - docker push ramyakanguri/multi-nginx
 - docker push ramyakanguri/multi-nserver
-- docker push ramyakanguri/multi-worker
+- docker push ramyakanguri/multi-worker 

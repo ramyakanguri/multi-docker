@@ -16,9 +16,9 @@ after_success:
   - docker build -t ramyakanguri/multi-worker ./worker
   
   #Login to docker CLI
-- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-# Take those images and push them to Docker hub
-- docker push ramyakanguri/multi-client
-- docker push ramyakanguri/multi-nginx
-- docker push ramyakanguri/multi-nserver
-- docker push ramyakanguri/multi-worker 
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Take those images and push them to Docker hub
+  - docker push ramyakanguri/multi-client
+  - docker push ramyakanguri/multi-nginx
+  - docker push ramyakanguri/multi-server
+  - docker push ramyakanguri/multi-worker 
